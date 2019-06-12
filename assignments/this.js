@@ -20,16 +20,8 @@
 
 // Principle 1 - code example for Window Binding:
 this.place = 'NY'
-console.log('window binding 1:', this.place) // 'NY'
+console.log('window binding:', this.place) // 'NY'
 
-// OR
-
-const sayLocation = function() {
-  console.log('window binding 2:', this.location)
-}
-sayLocation() // undefined
-global.location = 'Brooklyn'
-sayLocation() // 'Brooklyn'
 
 // Principle 2 - code example for Implicit Binding:
 const me = {
