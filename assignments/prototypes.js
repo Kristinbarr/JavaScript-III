@@ -62,7 +62,7 @@ CharacterStats.prototype.takeDamage = function() {
 function Humanoid(attributes) {
   CharacterStats.call(this, attributes)
   this.team = attributes.team
-  this.weapons = attributes.weapons
+  this.weapons = attributes.weapons.toString()
   this.language = attributes.language
 }
 
@@ -71,10 +71,6 @@ Humanoid.prototype = Object.create(CharacterStats.prototype)
 Humanoid.prototype.greet = function() {
   return `${this.name} offers a greeting in ${this.language}.`
 }
-
-new Humanoid({
-  name: 'Kristin'
-})
 
 // Test your work by un-commenting these 3 objects and the list of console logs below:
 
@@ -133,8 +129,8 @@ new Humanoid({
   console.log(archer.dimensions); // { length: 1, width: 2, height: 4 }
   console.log(swordsman.healthPoints); // 15
   console.log(mage.name); // Bruce
-  console.log(swordsman.team); // The Round Table
-  console.log(mage.weapons); // Staff of Shamalama
+  console.log(mage.team); // The Round Table
+  console.log(swordsman.weapons); // Staff of Shamalama
   console.log(archer.language); // Elvish
   console.log(archer.greet()); // Lilith offers a greeting in Elvish.
   console.log(mage.takeDamage()); // Bruce took damage.
