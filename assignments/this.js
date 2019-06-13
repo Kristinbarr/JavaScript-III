@@ -1,62 +1,53 @@
-/* The for principles of "this";
-
+/* The four principles of "this";
 * in your own words. explain the four principle for the "this" keyword below.
-
-* 1. Window binding
-  By default, 'this' binds to the global window object if it has no assigned context.
-
-* 2. Implicit Binding
-  When an object method is invoked, the 'this' keyword will refer to the object to the left of dot notation.
-
-* 3. 'new' Binding
-  The 'new' keyword creates a new instance from a constructor function. 'this' will refer to the instance that was created.
-
-* 4. Explicit Binding
-  Sets the context manually for 'this' with methods like `.call` or `.apply` on the function invocation. `.bind` is used to set the context but not immediately invoke the function.
-
-
+*
+* 1. Without providing context, `this` is automatically set to the window or console.
+* 2. Context to `this` is provided (implicitly) by a preceding `.`, followed by a predefined method.
+* 3. Context to `this` by means of a constructor function is provided by the `new` keyword.
+* 4. Context to `this` is provided (explicitly) by means of a built-in `.call` and/or `.apply` method.
+*
 * write out a code example of each explanation above
 */
 
-// Principle 1 - code example for Window Binding:
-this.place = 'NY'
-console.log('window binding:', this.place) // 'NY'
+// Principle 1
 
+console.log(this);
 
-// Principle 2 - code example for Implicit Binding:
-const me = {
-  name: 'Kristin',
-  location: 'NYC',
-  sayName: function() {
-    console.log('Implicit binding: ', `Hello, I'm ${this.name}!`)
-    // Hello, I'm Kristin!
-  }
+// Principle 2
+
+const joe = {
+    name: 'Joe',
+    say: function() {console.log(`I'm ${this.name}.`)}
 }
-me.sayName()
 
+joe.say();
 
-// Principle 3 - code example for New Binding:
-const Animal = function(type, name, color) {
-  this.type = type
-  this.name = name
-  this.color = color
+// Principle 3
+
+function Person(att){
+    this.name = att.name;
+    this.age = att.age;
 }
-const Tommy = new Animal('Tiger', 'Tommy', 'orange')
-console.log('new binding:', Tommy)
-// Animal { type: 'Tiger', name: 'Tommy', color: 'orange' }
 
+let jim = new Person({
+    name: 'Jim',
+    age: 20
+});
 
-// Principle 4 - code example for Explicit Binding:
-const meObj = {
-  name: 'Kristin',
-  location: 'NYC'
+console.log(jim.name, jim.age);
+
+// Principle 4
+function Pet(petAtt){
+    Person.call(this, petAtt);
+    this.toy = petAtt.toy;
 }
-const hobbiesArr = ['code', 'bike', 'sew']
 
-const describeMe = function(hobby1, hobby2, hobby3) {
-  console.log(
-    'Explicit binding: ',
-    `I'm ${this.name} and I like to ${hobby1}, ${hobby2} and ${hobby3}.`
-  ) // I'm Kristin and I like to code, bike and sew.
-}
-describeMe.call(me, ...hobbiesArr)
+Pet.prototype.play = function(){console.log(`${this.name} plays with its\' ${this.toy}`);};
+
+let rocky = new Pet({
+    name: 'Rocky',
+    age: 70,
+    toy: 'bone'
+});
+
+rocky.play();
