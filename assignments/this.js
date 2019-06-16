@@ -22,7 +22,6 @@
 this.place = 'NY'
 console.log('window binding:', this.place) // 'NY'
 
-
 // Principle 2 - code example for Implicit Binding:
 const me = {
   name: 'Kristin',
@@ -34,7 +33,6 @@ const me = {
 }
 me.sayName()
 
-
 // Principle 3 - code example for New Binding:
 const Animal = function(type, name, color) {
   this.type = type
@@ -44,7 +42,6 @@ const Animal = function(type, name, color) {
 const Tommy = new Animal('Tiger', 'Tommy', 'orange')
 console.log('new binding:', Tommy)
 // Animal { type: 'Tiger', name: 'Tommy', color: 'orange' }
-
 
 // Principle 4 - code example for Explicit Binding:
 const meObj = {
